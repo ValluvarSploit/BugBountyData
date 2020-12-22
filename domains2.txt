@@ -4,5 +4,3 @@ client.acorns.com
 graphql.acorns.com
 help.acorns.com
 signup.acorns.com
-arkoselabs.com
-client-api.arkoselabs.com
