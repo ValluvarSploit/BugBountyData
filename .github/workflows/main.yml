@@ -32,11 +32,11 @@ jobs:
           ./findomain -f domains-clean.txt -q | tee -a findomain-output.txt
       - name: Nuclei
         run: |
+          git clone https://github.com/projectdiscovery/nuclei-templates.git
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
-          ./nuclei -update-templates
-          ./nuclei -l findomain-output.txt -c 100 -stats -t / -exclude fuzzing/ -exclude dns/ -exclude panels/ -exclude misc/ -exclude security-misconfiguration/ -exclude technologies/ -exclude workflows/ -o nuclie-wildcard-output.txt
-          ./nuclei -l domains-output.txt -c 100 -stats -t / -exclude fuzzing/ -exclude dns/ -exclude panels/ -exclude misc/ -exclude security-misconfiguration/ -exclude technologies/ -exclude workflows/ -o nuclie-domain-output.txt
+          ./nuclei -l findomain-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-wildcard-output.txt
+          ./nuclei -l domains-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-domain-output.txt
           echo "end" | tee -a nuclie-wildcard-output.txt
           echo "end" | tee -a nuclie-domain-output.txt
       - name: Rename file
@@ -45,6 +45,7 @@ jobs:
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
           rm domains.txt wildcards.txt LICENSE.md findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz
+          rm -rf nuclei-templates/
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
