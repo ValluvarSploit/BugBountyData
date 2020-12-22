@@ -1,19 +1,20 @@
 #!/usr/bin/python3
 
-file1 = []
-file2 = []
+domains_local_list = []
+domains_remote_list = []
+#wildcard_local_list = []
+#wildcard_remote_list = []
 
-with open('domains.txt', 'r') as f1:
-    for line in f1:
-        file1.append(line.strip())
+with open('domains.txt', 'r') as domains_remote_file:
+    for line in domains_remote_file:
+        domains_remote_list.append(line.strip())
 
-with open('domains2.txt', 'r') as f2:
-    for line in f2:
-        file2.append(line.strip())
+with open('domains-local.txt', 'r') as domains_local_file:
+    for line in domains_local_file:
+        domains_local_list.append(line.strip())
 
-for element in file1:
-    if element not in file2:
-        #print(element)
-        with open('output.txt', 'a') as output:
-            output.write(element)
-            output.write('\n')
+for element in domains_remote_list:
+    if element not in domains_local_list:
+        with open('domains-output.txt', 'a') as domain_output:
+            domain_output.write(element)
+            domain_output.write('\n')
