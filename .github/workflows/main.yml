@@ -1,9 +1,9 @@
 name: BugBounty Data CI
 
-on: [push]
-#on:
-#  schedule:
-#  - cron: "0 * * * *"
+#on: [push]
+on:
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   build:
@@ -44,8 +44,7 @@ jobs:
           rm domains-local.txt wildcard-local.txt
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
-          rm domains.txt
-          rm wildcards.txt
+          rm domains.txt wildcards.txt LICENSE.md findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
