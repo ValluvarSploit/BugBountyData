@@ -6,4 +6,3 @@ help.acorns.com
 signup.acorns.com
 arkoselabs.com
 client-api.arkoselabs.com
-customer-sessions.arkoselabs.com
