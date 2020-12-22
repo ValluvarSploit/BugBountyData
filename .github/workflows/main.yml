@@ -29,5 +29,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add domains-output.txt domains-local.txt
-          git commit -m "Update domains-output.txt" -a
+          git commit -m "Update domains-output.txt"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Bug-Bounty.git" HEAD:main --follow-tags
