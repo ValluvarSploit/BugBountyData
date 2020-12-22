@@ -29,6 +29,7 @@ jobs:
           mv findomain-linux findomain
           chmod +x findomain
           ./findomain -f domains-clean.txt -q | tee -a findomain-output.txt
+          cat findomain-output.txt | tee -a findomain-output.bak
       - name: Nuclei
         run: |
           git clone https://github.com/projectdiscovery/nuclei-templates.git
@@ -38,6 +39,8 @@ jobs:
           ./nuclei -l domains-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-domain-output.txt
           echo "end" | tee -a nuclie-wildcard-output.txt
           echo "end" | tee -a nuclie-domain-output.txt
+          cat nuclie-wildcard-output.txt | tee -a nuclie-wildcard-output.bak
+          cat nuclie-domain-output.txt | tee -a nuclie-domain-output.bak
       - name: Rename file
         run: |
           rm domains-local.txt wildcard-local.txt
@@ -51,6 +54,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt all.txt
+          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt all.txt nuclie-wildcard-output.bak nuclie-domain-output.bak findomain-output.bak
           git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
