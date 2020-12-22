@@ -14,8 +14,6 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          git status
-          git pull
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
 #          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Run automation script
@@ -24,7 +22,8 @@ jobs:
       - name: Rename file
         run: |
           rm domains-local.txt
-          mv domains.txt domains-local.txt
+          cp domains.txt domains-local.txt
+          rm domains.txt
       - name: Commit domains-output.txt
         run: |
           git config --local user.email "action@github.com"
