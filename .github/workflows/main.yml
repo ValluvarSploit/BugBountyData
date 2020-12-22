@@ -14,7 +14,6 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Run automation script
         run: |
-          git pull
           python3 automation.py
       - name: Commit output.txt
         run: |
