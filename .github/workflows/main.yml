@@ -1,8 +1,9 @@
 name: BugBounty Data CI
 
-on:
-  schedule:
-  - cron: "0 * * * *"
+on: [push]
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
 
 jobs:
   build:
@@ -14,7 +15,7 @@ jobs:
       - name: Get Latest Data
         run: |
           rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
-          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
+          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt all.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Run automation script
@@ -45,6 +46,8 @@ jobs:
           cp wildcards.txt wildcard-local.txt
           rm domains.txt wildcards.txt LICENSE.md findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz
           rm -rf nuclei-templates/
+          cat wildcard-output.txt | tee -a all.txt
+          cat domains-output.txt | tee -a all.txt
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
