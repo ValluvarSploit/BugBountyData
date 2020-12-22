@@ -15,6 +15,7 @@ jobs:
       - name: Run automation script
         run: |
           git pull
+          git fetch
           python3 automation.py
       - name: Commit output.txt
         run: |
