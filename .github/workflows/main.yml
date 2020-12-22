@@ -29,8 +29,7 @@ jobs:
           wget https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
           mv findomain-linux findomain
           chmod +x findomain
-          mv findomain /usr/local/bin/
-          findomain -f domains-clean.txt -q | tee -a findomain-output.txt
+          ./findomain -f domains-clean.txt -q | tee -a findomain-output.txt
       - name: Nuclei
         run: |
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
