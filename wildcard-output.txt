@@ -1,0 +1,11 @@
+*.bitso.com
+*.genesiscapital.com
+*.itdashboard.gov
+*.reginfo.gov
+*.rocis.gov
+*.whocoronavirus.org
+*.demorgen.be
+*.volkskrant.nl
+*.sqills.com
+*.vtm.be
+*.vtmgo.be

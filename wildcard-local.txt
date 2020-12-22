@@ -29,7 +29,6 @@
 *.dellemc.com
 *.delltechnologies.com
 *.emc.com
-*.manywho.com
 *.sandbox.directly.com
 *.expressvpn.com
 *.xvservice.net
@@ -178,6 +177,7 @@ munin-*.wordpress.org
 *.txmblr.com
 *.irccloud-cdn.com
 *.irccloud.com
+*.bitso.com
 *.zendesk.com
 *.ud.wtf
 *.udimg.com
@@ -268,6 +268,7 @@ www.paypal-*.com
 *.quora.com
 *.ayco.com
 *.claritymoney.com
+*.genesiscapital.com
 *.global-liquidity.gs.com
 *.goldman.com
 *.goldmansachs.com
@@ -437,9 +438,6 @@ vcc-*.8x8.com
 *.motorcraft.com
 *.omnicraftautoparts.com
 *.quicklane.com
-*.igpayment.com
-*.innogames.com
-*.innogames.de
 *.bluetarp.com
 *.capitalone.ca
 *.capitalone.co.uk
@@ -486,7 +484,6 @@ vcc-*.8x8.com
 *.api.playstation.com
 *.playstation.net
 *.sonyentertainmentnetwork.com
-*.slots.io
 *.coloros.com
 *.finzfin.com
 *.heytap.com
@@ -541,12 +538,18 @@ vcc-*.8x8.com
 *.tiktokv.com
 *.jimdofree.com
 *.jimdosite.com
+*.itdashboard.gov
+*.reginfo.gov
+*.rocis.gov
 *.browser.cloud.com
 *.citrixworkspacesapi.net
 *developer.cloud.com
 onboarding-*.cloud.com
+*.whocoronavirus.org
 *.ad.nl
 *.bpost2.be
+*.demorgen.be
+*.volkskrant.nl
 *.das.eu
 *.dns.eu
 *.eurid.eu
@@ -556,7 +559,6 @@ onboarding-*.cloud.com
 *.gulp.ch
 *.gulp.de
 *.hwigroup.com
-*.parool.nl
 *.hoplr.*
 *.jooki.rocks
 *.muuselabs.com
@@ -595,13 +597,13 @@ onboarding-*.cloud.com
 *.sentiance.com
 *.speakap.com
 *.speakap.io
+*.sqills.com
 *.9lives.be
 *.base.be
 *.telenet.be
 *.yelo.be
 *.yeloplay.be
 *.tempo-team.*
-*.trouw.nl
 *.twago.fr
 *.twago.it
 *.twago.com
@@ -621,6 +623,8 @@ onboarding-*.cloud.com
 *.sporza.be
 *.stubru.be
 *.vrt.be
+*.vtm.be
+*.vtmgo.be
 *.forum.ibood.com
 *.intigriti.com
 *.intigriti.io
