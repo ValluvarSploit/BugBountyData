@@ -1,0 +1,24 @@
+name: BugBounty Data CI
+
+on: [push]
+#on:
+#  schedule:
+#  - cron: "* * * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+         token: ${{ secrets.TOKEN }} 
+      - name: Run automation script
+        run: |
+          python3 automation.py
+      - name: Commit output.txt
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add output.txt
+          git commit -m "Update output.txt" -a
+          git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Bug-Bounty.git" HEAD:main --follow-tags
