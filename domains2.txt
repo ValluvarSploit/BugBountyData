@@ -1,0 +1,8 @@
+bugcrowd-pub.bounty.accellion.net
+app.acorns.com
+client.acorns.com
+graphql.acorns.com
+help.acorns.com
+signup.acorns.com
+arkoselabs.com
+client-api.arkoselabs.com
