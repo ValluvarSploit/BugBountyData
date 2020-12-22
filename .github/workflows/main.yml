@@ -13,13 +13,32 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm domains-output.txt wildcard-output.txt
-          touch domains-output.txt wildcard-output.txt
+          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
+          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Run automation script
         run: |
           python3 automation.py
+      - name: Subdomain Enumeration
+        run: |
+          while read subdomain ; do echo "$subdomain" | cut -c 3- ; done < wildcard-local.txt | tee -a domains-clean.txt
+      - name: Findomain
+        run: |
+          wget https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
+          mv findomain-linux findomain
+          chmod +x findomain
+          mv findomain /usr/local/bin/
+          findomain -f domains-clean.txt -q | tee -a findomain-output.txt
+      - name: Nuclei
+        run: |
+          wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
+          tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
+          ./nuclei -update-templates
+          ./nuclei -l findomain-output.txt -c 100 -stats -t / -exclude fuzzing/ -exclude dns/ -exclude panels/ -exclude misc/ -exclude security-misconfiguration/ -exclude technologies/ -exclude workflows/ -o nuclie-wildcard-output.txt
+          ./nuclei -l domains-output.txt -c 100 -stats -t / -exclude fuzzing/ -exclude dns/ -exclude panels/ -exclude misc/ -exclude security-misconfiguration/ -exclude technologies/ -exclude workflows/ -o nuclie-domain-output.txt
+          echo "end" | tee -a nuclie-wildcard-output.txt
+          echo "end" | tee -a nuclie-domain-output.txt
       - name: Rename file
         run: |
           rm domains-local.txt wildcard-local.txt
@@ -31,6 +50,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt
+          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
           git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
