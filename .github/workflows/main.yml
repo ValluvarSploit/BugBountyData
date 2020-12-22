@@ -14,22 +14,24 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm domains-output.txt
-          touch domains-output.txt
+          rm domains-output.txt wildcard-output.txt
+          touch domains-output.txt wildcard-output.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
-##          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
+          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Run automation script
         run: |
           python3 automation.py
       - name: Rename file
         run: |
-          rm domains-local.txt
+          rm domains-local.txt wildcard-local.txt
           cp domains.txt domains-local.txt
+          cp wildcards.txt wildcard-local.txt
           rm domains.txt
-      - name: Commit domains-output.txt
+          rm wildcards.txt
+      - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-output.txt domains-local.txt
-          git commit -m "Update domains-output.txt"
+          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt
+          git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
