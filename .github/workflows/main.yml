@@ -14,7 +14,6 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          touch domains-output.txt
           rm domains-output.txt
           touch domains-output.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
