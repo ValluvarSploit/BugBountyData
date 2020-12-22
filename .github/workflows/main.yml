@@ -15,6 +15,7 @@ jobs:
       - name: Get Latest Data
         run: |
           rm domains-output.txt
+          touch domains-output.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
 ##          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Run automation script
