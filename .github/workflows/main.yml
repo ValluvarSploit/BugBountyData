@@ -23,7 +23,7 @@ jobs:
           python3 automation.py
       - name: Subdomain Enumeration
         run: |
-          while read subdomain ; do echo "$subdomain" | cut -c 3- ; done < wildcard-local.txt | tee -a domains-clean.txt
+          while read subdomain ; do echo "$subdomain" | cut -c 3- ; done < wildcard-output.txt | tee -a domains-clean.txt
       - name: Findomain
         run: |
           wget https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
