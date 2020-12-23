@@ -1,5 +1,0 @@
-abonnement.demorgen.be
-login2.demorgen.be
-myaccount.demorgen.be
-shop.demorgen.be
-www.demorgen.be
