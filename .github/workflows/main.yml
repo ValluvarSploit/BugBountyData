@@ -57,6 +57,7 @@ jobs:
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
           rm domains.txt wildcards.txt
+          echo `date` | tee -a all.txt
           cat wildcard-output.txt domains-output.txt | tee -a all.txt
       - name: Commit Output files
         run: |
