@@ -14,8 +14,8 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt
-          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt
+          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt httpx-input.txt
+          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt httpx-input.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/domains.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/wildcards.txt
       - name: Run automation script
@@ -46,8 +46,7 @@ jobs:
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
           ./nuclei -l httpx-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-output.txt
-          echo "end" | tee -a nuclie-wildcard-output.txt
-          echo "end" | tee -a nuclie-domain-output.txt
+          echo "end" | tee -a nuclie-output.txt
           cat nuclie-output.txt | tee -a nuclie-output.bak
           rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
           rm -rf nuclei-templates/
@@ -57,12 +56,11 @@ jobs:
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
           rm domains.txt wildcards.txt
-          cat wildcard-output.txt | tee -a all.txt
-          cat domains-output.txt | tee -a all.txt
+          cat wildcard-output.txt domains-output.txt | tee -a all.txt
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt findomain-output.bak nuclie-output.txt all.txt nuclie-output.bak httpx-output.txt httpx-output.bak
+          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt findomain-output.bak nuclie-output.txt nuclie-output.bak httpx-output.txt httpx-output.bak all.txt
           git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
