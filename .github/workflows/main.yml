@@ -19,6 +19,7 @@ jobs:
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
           cat domains.txt wildcards.txt
+          ls -la
       - name: Run automation script
         run: |
           python3 automation.py
