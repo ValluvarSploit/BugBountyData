@@ -16,8 +16,6 @@ jobs:
         run: |
           rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
           touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
-#          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
-#          wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/domains.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/wildcards.txt
       - name: Run automation script
