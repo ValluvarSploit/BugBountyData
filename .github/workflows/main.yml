@@ -1,9 +1,9 @@
 name: BugBounty Data CI
 
-on: [push]
-#on:
-#  schedule:
-#  - cron: "0 * * * *"
+#on: [push]
+on:
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   build:
@@ -14,8 +14,8 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
-          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt
+          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt
+          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/domains.txt
           wget https://raw.githubusercontent.com/ValluvarSploit/Resolver/main/wildcards.txt
       - name: Run automation script
@@ -31,30 +31,38 @@ jobs:
           chmod +x findomain
           ./findomain -f domains-clean.txt -q | tee -a findomain-output.txt
           cat findomain-output.txt | tee -a findomain-output.bak
+          rm findomain
+      - name: httpx resolver
+        run: |
+          wget https://github.com/projectdiscovery/httpx/releases/download/v1.0.3/httpx_1.0.3_linux_amd64.tar.gz
+          tar -xvf httpx_1.0.3_linux_amd64.tar.gz
+          cat findomain-output.txt domains-output.txt | tee -a httpx-input.txt
+          ./httpx -l httpx-input.txt -o httpx-output.txt
+          cat httpx-output.txt | tee -a httpx-output.bak
+          rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt
       - name: Nuclei
         run: |
           git clone https://github.com/projectdiscovery/nuclei-templates.git
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
-          ./nuclei -l findomain-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-wildcard-output.txt
-          ./nuclei -l domains-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-domain-output.txt
+          ./nuclei -l httpx-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-output.txt
           echo "end" | tee -a nuclie-wildcard-output.txt
           echo "end" | tee -a nuclie-domain-output.txt
-          cat nuclie-wildcard-output.txt | tee -a nuclie-wildcard-output.bak
-          cat nuclie-domain-output.txt | tee -a nuclie-domain-output.bak
+          cat nuclie-output.txt | tee -a nuclie-output.bak
+          rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
+          rm -rf nuclei-templates/
       - name: Rename file
         run: |
           rm domains-local.txt wildcard-local.txt
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
-          rm domains.txt wildcards.txt LICENSE.md findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz
-          rm -rf nuclei-templates/
+          rm domains.txt wildcards.txt
           cat wildcard-output.txt | tee -a all.txt
           cat domains-output.txt | tee -a all.txt
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt nuclie-wildcard-output.txt nuclie-domain-output.txt all.txt nuclie-wildcard-output.bak nuclie-domain-output.bak findomain-output.bak
+          git add domains-output.txt domains-local.txt wildcard-output.txt wildcard-local.txt domains-clean.txt findomain-output.txt findomain-output.bak nuclie-output.txt all.txt nuclie-output.bak httpx-output.txt httpx-output.bak
           git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
