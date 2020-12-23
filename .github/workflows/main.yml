@@ -48,7 +48,6 @@ jobs:
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
           ./nuclei -l httpx-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-output.txt
-          cat nuclie-output.txt
           echo `date` | tee -a nuclie-output.txt
           cat nuclie-output.txt | tee -a nuclie-output.bak
           rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
