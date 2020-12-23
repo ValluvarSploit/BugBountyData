@@ -1,3 +1,5 @@
 *.rapyd.net
 *.wolt.com
 pickmycareer.in
+*.pickmycareer.in
+testphp.vulnweb.com
