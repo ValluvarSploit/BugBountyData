@@ -18,7 +18,6 @@ jobs:
           touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt httpx-input.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
-          cat domains.txt wildcards.txt
           ls -la
       - name: Run automation script
         run: |
@@ -46,10 +45,12 @@ jobs:
           rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt
       - name: Nuclei
         run: |
+          ls -la
           git clone https://github.com/projectdiscovery/nuclei-templates.git
           wget https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
           ./nuclei -l httpx-output.txt -c 100 -stats -t nuclei-templates -exclude nuclei-templates/fuzzing/ -exclude nuclei-templates/dns/ -exclude nuclei-templates/panels/ -exclude nuclei-templates/misc/ -exclude nuclei-templates/security-misconfiguration/ -exclude nuclei-templates/technologies/ -exclude nuclei-templates/workflows/ -o nuclie-output.txt
+          ls -la
           cat nuclie-output.txt
           echo `date` | tee -a nuclie-output.txt
           cat nuclie-output.txt | tee -a nuclie-output.bak
