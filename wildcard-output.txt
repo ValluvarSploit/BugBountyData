@@ -1,1 +1,2 @@
-
+*.rapyd.net
+*.wolt.com
