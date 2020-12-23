@@ -5,3 +5,10 @@ pickmycareer.in
 testphp.vulnweb.com
 www.arlo.com
 Wed Dec 23 16:37:36 UTC 2020
+Wed Dec 23 17:52:29 UTC 2020
+*.demorgen.be
+abonnement.demorgen.be
+login2.demorgen.be
+myaccount.demorgen.be
+shop.demorgen.be
+www.demorgen.be

@@ -1,1 +1,7 @@
-Wed Dec 23 16:37:35 UTC 2020
+[wordpress-user-enumeration] [http] [info] https://brandedcontentbe.demorgen.be/wp-json/wp/v2/users/
+[general-tokens] [http] [medium] https://abonnement.demorgen.be [KEY ="3_Q4AEprFuk6Ko16drlcnODyPF8XCDI0q_Ut25vw8YueNhlTYsma-m3_5X2q6y-frZ",Key=Xh7eKXB4H0Ns5Ggy,key=marketing]
+[general-tokens] [http] [medium] https://acc-voordelen.demorgen.be [key=3_Q4AEprFuk6Ko16drlcnODyPF8XCDI0q_Ut25vw8YueNhlTYsma-m3_5X2q6y-frZ"]
+[general-tokens] [http] [medium] https://brandedcontentbe.demorgen.be [key=AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+[credentials-disclosure] [http] [medium] https://acc-voordelen.demorgen.be [apikey=]
+[google-api-key] [http] [low] https://brandedcontentbe.demorgen.be [AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+Wed Dec 23 17:52:29 UTC 2020
