@@ -1,4 +1,3 @@
-*.meraki.com
 *.app.asana.com
 *.asana.biz
 *.asana.plus
@@ -19,6 +18,7 @@
 *.canva.cn
 *.canva.com
 *.ikarem.io
+*.meraki.com
 *.network-auth.com
 *.comcast.com
 *.sys.comcast.net
