@@ -1,4 +1,4 @@
-name: Slack Success Notification
+name: Slack BugBountyData Success Notification
 
 on: [push]
 
