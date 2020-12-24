@@ -37,7 +37,7 @@ jobs:
           wget --quiet https://github.com/projectdiscovery/httpx/releases/download/v1.0.3/httpx_1.0.3_linux_amd64.tar.gz
           tar -xvf httpx_1.0.3_linux_amd64.tar.gz
           cat findomain-output.txt domains-output.txt >> httpx-input.txt
-          ./httpx -l httpx-input.txt -o httpx-output.txt
+          ./httpx -l httpx-input.txt -o httpx-output.txt -silent -follow-redirects
           cat httpx-output.txt >> httpx-output.bak
           rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt
       - name: Nuclei
@@ -45,7 +45,7 @@ jobs:
           git clone https://github.com/projectdiscovery/nuclei-templates.git
           wget --quiet https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
-          ./nuclei -l httpx-output.txt -c 100 -stats -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -o nuclie-output.txt
+          ./nuclei -l httpx-output.txt -c 100 -stats -silent -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -exclude nuclei-templates/technologies/ -o nuclie-output.txt
           echo `date` >> nuclie-output.txt
           cat nuclie-output.txt >> nuclie-output.bak
           rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
