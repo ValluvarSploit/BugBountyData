@@ -1,0 +1,6 @@
+abonnement.parool.nl
+login2.parool.nl
+myaccount.parool.nl
+shop.parool.nl
+webwinkel.parool.nl
+www.parool.nl

@@ -1,1 +1,7 @@
-Thu Dec 24 10:27:00 UTC 2020
+[wordpress-user-enumeration] [http] [info] https://brandedcontent.parool.nl/wp-json/wp/v2/users/
+[general-tokens] [http] [medium] https://brandedcontent.parool.nl [key=AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+[wordpress-user-enumeration] [http] [info] https://story.parool.nl/wp-json/wp/v2/users/
+[general-tokens] [http] [medium] https://story.parool.nl [key=AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+[google-api-key] [http] [low] https://brandedcontent.parool.nl [AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+[google-api-key] [http] [low] https://story.parool.nl [AIzaSyBLZ0Dx_UH2ShvTAiqdjYB47p-l-eDbCk4]
+Thu Dec 24 11:28:03 UTC 2020
