@@ -4,3 +4,8 @@ myaccount.parool.nl
 shop.parool.nl
 webwinkel.parool.nl
 www.parool.nl
+abonnement.humo.be
+login2.humo.be
+myaccount.humo.be
+shop.humo.be
+www.humo.be
