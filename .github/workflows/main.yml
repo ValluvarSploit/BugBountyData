@@ -20,9 +20,9 @@ jobs:
       - name: Check for New domains
         run: |
           python3 automation.py
-      - name: Clean Wildcards Data
+      - name: Clean Wildcard domains
         run: |
-          while read subdomain ; do echo "$subdomain" | cut -c 3- ; done < wildcard-output.txt >> domains-clean.txt
+          cat wildcard-output.txt | sed 's/\*\.//g' > domains-clean.txt
       - name: Findomain
         run: |
           wget --quiet https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
