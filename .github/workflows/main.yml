@@ -78,7 +78,7 @@ jobs:
           echo "httpx"
           rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt
           echo "nuclei"
-          rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
+          rm nuclei nuclei_2.2.0_linux_amd64.tar.gz
           echo "nuclei templates"
           rm -rf nuclei-templates/
           echo "Other temp files"
