@@ -13,8 +13,8 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt httpx-input.txt
-          touch domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt nuclie-output.txt httpx-output.txt httpx-input.txt
+          rm nuclie-output.txt
+          touch wildcard-output.txt
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
       - name: Check for New domains
@@ -26,16 +26,15 @@ jobs:
       - name: Findomain
         run: |
           wget --quiet https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
-          mv findomain-linux findomain
-          chmod +x findomain
-          ./findomain -f domains-clean.txt -q >> findomain-output.txt
+          mv findomain-linux findomain && chmod +x findomain
+          ./findomain -f domains-clean.txt -q > findomain-output.txt
           cat findomain-output.txt >> findomain-output.bak
           rm findomain
       - name: httpx resolver
         run: |
           wget --quiet https://github.com/projectdiscovery/httpx/releases/download/v1.0.3/httpx_1.0.3_linux_amd64.tar.gz
           tar -xvf httpx_1.0.3_linux_amd64.tar.gz
-          cat findomain-output.txt domains-output.txt >> httpx-input.txt
+          cat findomain-output.txt domains-output.txt > httpx-input.txt
           ./httpx -l httpx-input.txt -o httpx-output.txt -silent -follow-redirects
           cat httpx-output.txt >> httpx-output.bak
           rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt
