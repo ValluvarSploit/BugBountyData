@@ -1,8 +1,8 @@
 name: BugBounty Data CI
-
-on:
-  schedule:
-  - cron: "0 * * * *"
+on: [push]
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
 
 jobs:
   build:
