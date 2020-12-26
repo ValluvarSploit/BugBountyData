@@ -22,7 +22,6 @@ admin.atlassian.com
 id.atlassian.com
 marketplace.atlassian.com
 api.better.com
-better.com
 apm.bigbank.eu
 apvieno.bigbank.lv
 auth.bigbank.eu
