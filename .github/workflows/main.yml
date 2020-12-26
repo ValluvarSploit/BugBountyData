@@ -13,10 +13,11 @@ jobs:
          token: ${{ secrets.TOKEN }} 
       - name: Get Latest Data
         run: |
-          rm nuclie-output.txt
-          touch wildcard-output.txt
+          rm nuclie-output.txt 
+          touch wildcard-output.txt domains-output.txt
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
+      # automation.py produces two files- domains-output.txt, wildcard-local.txt
       - name: Check for New domains
         run: |
           python3 automation.py
