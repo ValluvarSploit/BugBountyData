@@ -1576,3 +1576,19 @@ Sat Dec 26 14:45:01 UTC 2020
 [web-config] [http] [info] https://me.quicklane.com/web.config
 [web-config] [http] [info] https://www.me.quicklane.com/web.config
 Sat Dec 26 15:02:19 UTC 2020
+[missing-csp] [http] [info] https://www.square.com
+[missing-csp] [http] [info] https://newcomputer.square.com
+[missing-x-frame-options] [http] [low] https://newcomputer.square.com
+[missing-hsts] [http] [info] https://newcomputer.square.com
+[robots-txt] [http] [info] https://cash.square.com/robots.txt
+[missing-csp] [http] [info] https://cash.square.com
+[cname-service-detector:github] [dns] [info] newcomputer.square.com
+[missing-csp] [http] [info] https://square.com
+[waf-detect:varnish] [http] [info] https://newcomputer.square.com/
+[waf-detect:ats] [http] [info] https://www.square.com/
+[tech-detect:jsdelivr] [http] [info] https://newcomputer.square.com/
+[tech-detect:font-awesome] [http] [info] https://newcomputer.square.com/
+[waf-detect:ats] [http] [info] https://square.com/
+[tech-detect:contentful] [http] [info] https://www.square.com/
+[tech-detect:contentful] [http] [info] https://square.com/
+Sat Dec 26 20:42:51 UTC 2020
