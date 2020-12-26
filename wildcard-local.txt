@@ -28,6 +28,7 @@
 *.dell.com
 *.dellemc.com
 *.delltechnologies.com
+*.emc.com
 *.sandbox.directly.com
 *.expressvpn.com
 *.xvservice.net
