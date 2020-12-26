@@ -46,7 +46,7 @@ jobs:
           wget --quiet https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
           ./nuclei -l httpx-output.txt -c 100 -stats -silent -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -exclude nuclei-templates/technologies/ -o nuclie-output.txt
-          echo `date` >> nuclie-output.txt
+          if [[ ! -f nuclie-output.txt ]]; then touch nuclie-output.txt; fi
           sort nuclie-output.txt
           cat nuclie-output.txt >> nuclie-output.bak
           rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
@@ -70,7 +70,7 @@ jobs:
           cp domains.txt domains-local.txt
           cp wildcards.txt wildcard-local.txt
           rm domains.txt wildcards.txt
-          echo `date` >> all.txt
+          if [[ ! -f all.txt ]]; then touch nuclie-output.txt; fi
           cat wildcard-output.txt domains-output.txt >> all.txt
           rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt httpx-output.txt  findomain-output.bak
       - name: Commit Output files
