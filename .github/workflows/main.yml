@@ -18,7 +18,7 @@ jobs:
           rm nuclie-output.txt 
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
           wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
-      # automation.py produces two files- domains-output.txt, wildcard-local.txt
+      # automation.py produces two files- domains-output.txt, wildcard-output.txt
       - name: Check for New domains
         run: |
           python3 automation.py
@@ -72,11 +72,12 @@ jobs:
           rm domains.txt wildcards.txt
           if [[ ! -f all.txt ]]; then touch nuclie-output.txt; fi
           cat wildcard-output.txt domains-output.txt >> all.txt
+          cat domains-clean.txt >> wildcards-completed.txt 
           rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt httpx-output.txt  findomain-output.bak
       - name: Commit Output files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-local.txt wildcard-local.txt nuclie-output.txt nuclie-output.bak httpx-output.bak all.txt
+          git add domains-local.txt wildcard-local.txt nuclie-output.txt nuclie-output.bak httpx-output.bak all.txt wildcards-completed.txt
           git commit -m "Update Output files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
