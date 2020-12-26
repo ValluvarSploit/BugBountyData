@@ -1933,3 +1933,11 @@ Sat Dec 26 21:02:03 UTC 2020
 [missing-x-frame-options] [http] [low] https://voucher-allocation-service.gojekapi.com
 [missing-x-frame-options] [http] [low] https://sandbox-api.di-partner.gojekapi.com
 Sat Dec 26 21:16:05 UTC 2020
+[mx-service-detector:Office 365] [dns] [info] prosus.com
+[missing-csp] [http] [info] https://www.prosus.com
+[robots-txt] [http] [info] https://www.prosus.com/robots.txt
+[missing-csp] [http] [info] https://okta.prosus.com
+[general-tokens] [http] [medium] https://www.prosus.com [key=AIzaSyBrK-SOSMmR0oLENn2-VxOyLjOMpMcgVIk"]
+[missing-hsts] [http] [info] https://tableau-iars.prosus.com
+[missing-csp] [http] [info] https://prosus.com
+[google-api-key] [http] [low] https://www.prosus.com [AIzaSyBrK-SOSMmR0oLENn2-VxOyLjOMpMcgVIk]
