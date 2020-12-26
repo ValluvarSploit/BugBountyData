@@ -1,8 +1,10 @@
 name: BugBounty Data CI
 
 on:
-  schedule:
-  - cron: "0 * * * *"
+  workflow_dispatch:
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
 
 jobs:
   build:
@@ -45,6 +47,7 @@ jobs:
           tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
           ./nuclei -l httpx-output.txt -c 100 -stats -silent -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -exclude nuclei-templates/technologies/ -o nuclie-output.txt
           echo `date` >> nuclie-output.txt
+          sort nuclie-output.txt
           cat nuclie-output.txt >> nuclie-output.bak
           rm LICENSE.md nuclei README.md nuclei_2.2.0_linux_amd64.tar.gz
           rm -rf nuclei-templates/
