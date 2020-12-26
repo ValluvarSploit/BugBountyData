@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+import os
+os.system('touch domains-output.txt')
+os.system('touch wildcard-output.txt')
+
 domains_local_list = []
 domains_remote_list = []
 wildcard_local_list = []
