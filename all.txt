@@ -9,3 +9,5 @@ Sat Dec 26 20:42:51 UTC 2020
 *.square.com
 Sat Dec 26 21:02:03 UTC 2020
 *.scoober.com
+Sat Dec 26 21:16:05 UTC 2020
+*.gojekapi.com
