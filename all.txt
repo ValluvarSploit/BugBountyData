@@ -7,3 +7,5 @@ Sat Dec 26 15:02:19 UTC 2020
 *.quicklane.com
 Sat Dec 26 20:42:51 UTC 2020
 *.square.com
+Sat Dec 26 21:02:03 UTC 2020
+*.scoober.com

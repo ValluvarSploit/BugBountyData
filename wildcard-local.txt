@@ -108,6 +108,7 @@ api*.soundcloud.com
 *.citymeal.com
 *.lieferando.at
 *.lieferando.de
+*.scoober.com
 *.takeaway.com
 *.thuisbezorgd.nl
 *.yourdelivery.de
