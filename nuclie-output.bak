@@ -1541,3 +1541,38 @@
 [springboot-actuators] [http] [medium] https://uds-sizer-test.emc.com/actuator
 Sat Dec 26 12:09:44 UTC 2020
 Sat Dec 26 14:45:01 UTC 2020
+[missing-csp] [http] [info] https://wwwqa2.quicklane.com
+[missing-csp] [http] [info] https://wwwqa.quicklane.com
+[missing-x-frame-options] [http] [low] https://wwwqa2.quicklane.com
+[missing-hsts] [http] [info] https://wwwqa2.quicklane.com
+[missing-csp] [http] [info] https://owneradvantagerewards.quicklane.com
+[missing-csp] [http] [info] https://www.quicklanedeals.quicklane.com
+[missing-csp] [http] [info] https://th.quicklane.com
+[missing-csp] [http] [info] https://quicklane.com
+[missing-csp] [http] [info] https://quicklanedeals.quicklane.com
+[missing-csp] [http] [info] https://qa.rewards.quicklane.com
+[missing-csp] [http] [info] https://www.th.quicklane.com
+[missing-csp] [http] [info] https://m.quicklane.com
+[missing-csp] [http] [info] https://www.quicklane.com
+[missing-hsts] [http] [info] https://quicklanedeals.quicklane.com
+[missing-hsts] [http] [info] https://quicklane.com
+[missing-hsts] [http] [info] https://owneradvantagerewards.quicklane.com
+[missing-hsts] [http] [info] https://qa.rewards.quicklane.com
+[missing-csp] [http] [info] https://me.quicklane.com
+[missing-csp] [http] [info] https://www.me.quicklane.com
+[missing-hsts] [http] [info] https://wwwqa.quicklane.com
+[missing-hsts] [http] [info] https://www.quicklanedeals.quicklane.com
+[missing-hsts] [http] [info] https://me.quicklane.com
+[missing-hsts] [http] [info] https://www.me.quicklane.com
+[missing-x-frame-options] [http] [low] https://quicklane.com
+[missing-x-frame-options] [http] [low] https://wwwqa.quicklane.com
+[missing-x-frame-options] [http] [low] https://owneradvantagerewards.quicklane.com
+[missing-x-frame-options] [http] [low] https://quicklanedeals.quicklane.com
+[missing-x-frame-options] [http] [low] https://www.quicklanedeals.quicklane.com
+[missing-x-frame-options] [http] [low] https://me.quicklane.com
+[missing-x-frame-options] [http] [low] https://www.me.quicklane.com
+[general-tokens] [http] [medium] https://me.quicklane.com [Key:"NRJS-409ca92d94cac55e709",Key":"NRJS-409ca92d94cac55e709"]
+[general-tokens] [http] [medium] https://www.me.quicklane.com [Key:"NRJS-409ca92d94cac55e709",Key":"NRJS-409ca92d94cac55e709"]
+[web-config] [http] [info] https://me.quicklane.com/web.config
+[web-config] [http] [info] https://www.me.quicklane.com/web.config
+Sat Dec 26 15:02:19 UTC 2020

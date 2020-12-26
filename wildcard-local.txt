@@ -435,6 +435,7 @@ vcc-*.8x8.com
 *.lincoln.com
 *.motorcraft.com
 *.omnicraftautoparts.com
+*.quicklane.com
 *.bluetarp.com
 *.capitalone.ca
 *.capitalone.co.uk
