@@ -9,6 +9,9 @@
 *.bitdefender.net
 *.bitdiscovery.com
 *.boozt.com
+*.scoober.com
+*.mojave.net
+*.wordcamp.org
 *.booztlet.com
 *.bugpoc.com
 *.bugpoc.ninja
