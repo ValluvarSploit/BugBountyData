@@ -58,7 +58,6 @@
 *.naspers.fr
 *.naspers.us
 *.naspersventures.com
-*.prosus.com
 *.nflxext.com
 *.nflximg.net
 *.nflxso.net
