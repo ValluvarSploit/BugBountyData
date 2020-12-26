@@ -1,6 +1,6 @@
 name: BugBounty Data CI
 
-on:
+on: 
   workflow_dispatch:
 #on:
 #  schedule:
