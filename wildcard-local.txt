@@ -147,7 +147,8 @@ api*.soundcloud.com
 *.sip.*.twilio.com
 *.tzero.com
 *.westernunion.*
-*.studiopress.com
+
+
 *.wpengine.io
 *.wpesvc.net
 *-cvr-aws-*.sys.comcast.net
