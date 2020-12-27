@@ -24,6 +24,7 @@
 *.sys.comcast.net
 *.xfinity.com
 *.creditkarma.com
+*.boomi.com
 *.dell.com
 *.dellemc.com
 *.delltechnologies.com
