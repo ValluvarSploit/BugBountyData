@@ -179,6 +179,7 @@ munin-*.wordpress.org
 *.irccloud.com
 *.bitso.com
 *.zendesk.com
+*.ud.wtf
 *.udimg.com
 *.urbandictionary.biz
 *.urbandictionary.blog

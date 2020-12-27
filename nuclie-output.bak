@@ -2606,3 +2606,5 @@ Sat Dec 26 21:16:05 UTC 2020
 [google-api-key] [http] [low] https://mugs.marketo.com [AIzaSyAUbIWaMUTo2-tnHyl1xUZ8cpP1UAJNReE]
 [credentials-disclosure] [http] [medium] https://mugs.marketo.com [access_token=,access_token:]
 [ntlm-directories] [http] [info] https://sts.qadynamics.marketo.com/certsrv/
+[missing-csp] [http] [info] https://ud.wtf
+[security-txt] [http] [info] https://ud.wtf/security.txt
