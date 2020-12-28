@@ -1,6 +1,6 @@
 name: Slack BugBountyData Success Notification
 
-on: [push]
+on: push
 
 jobs:
   deploy:
