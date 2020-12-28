@@ -158,7 +158,6 @@ xhomeapi-*.codebig2.net
 *.vpn.hackerone.net
 *.hackerone-ext-content.com
 *.hackerone-user-content.com
-*.buddypress.org
 *.wordcamp.org
 *.wordpress.net
 *.wordpress.org
