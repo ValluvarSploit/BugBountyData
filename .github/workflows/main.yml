@@ -1,11 +1,8 @@
 name: BugBounty Data CI
 
 on:
-  workflow_dispatch:
-#on: push
-#on:
-#  schedule:
-#  - cron: "0 * * * *"
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   build:
