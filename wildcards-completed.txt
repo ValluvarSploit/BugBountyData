@@ -9,3 +9,8 @@ ud.wtf
 studiopress.com
 boomi.com
 buddypress.org
+ad.nl
+demorgen.be
+parool.nl
+humo.be
+trouw.nl
