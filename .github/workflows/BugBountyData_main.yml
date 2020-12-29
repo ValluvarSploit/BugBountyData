@@ -1,0 +1,80 @@
+name: BugBountyData
+
+on: 
+  workflow_dispatch:
+  
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
+
+jobs:
+  bug-bounty-data:
+    runs-on: ubuntu-latest
+    env:
+                 SLACK_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_USER_TOKEN }}
+                 SLACK_CHANNEL_NAME: ${{ secrets.SLACK_CHANNEL_NAME }}
+                 GITHUB_TOKEN: ${{ secrets.TOKEN }}
+                 
+    steps:
+      - uses: actions/checkout@v2
+          
+      - name: Install Dependencies
+        run: |
+                wget --quiet https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
+                mv findomain-linux findomain && chmod +x findomain
+                go get -u github.com/tomnomnom/httprobe
+                cp /home/runner/go/bin/httprobe .
+                git clone https://github.com/projectdiscovery/nuclei-templates.git
+                wget --quiet https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
+                tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
+                  
+      - name: Get Latest Data
+        run: |
+                 wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
+                 wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
+          
+      # automation.py produces two files- domains-output.txt, wildcard-output.txt
+      - name: Check for New domains
+        run: |
+                 python3 automation.py
+                 
+      - name: Clean Wildcard domains
+        run: |
+                 cat wildcard-output.txt | sed 's/\*\.//g' > domains-clean.txt
+                 
+      - name: Findomain
+        run: |
+                 ./findomain -f domains-clean.txt -q > findomain-output.txt
+                 
+      - name: HTTP/HTTPS Resolver-httprobe
+        run: |
+                 cat findomain-output.txt domains-output.txt > httpx-input.txt
+                 cat httpx-input.txt | ./httprobe | tee -a httpx-output.txt
+          
+      - name: Nuclei
+        run: |
+                 ./nuclei -l httpx-output.txt -c 100 -stats -silent -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -exclude nuclei-templates/technologies/ -o nuclie-output.txt
+                    
+      - name: Rename file
+        run: |
+                 cp domains.txt domains-local.txt && cp wildcards.txt wildcard-local.txt
+                 rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt httpx-output.txt
+          
+      - name: Send Files to Slack Channel
+        run: |
+                 today=$(date +"%d_%m_%Y")
+                 if [[ -f httpx-output.txt ]]; then sort httpx-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData httprobe subdomains file-$today" -F filename="httpx-output_$today.txt" -F file=@httpx-output.txt; fi
+                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData-nucli scan file-$today" -F filename="nuclei-output_$today.txt" -F file=@nuclie-output.txt; fi
+                 
+      - name: Remove Tempoaray Files
+        run: |           
+                 rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt
+                 rm -rf nuclei-templates/
+                 
+      - name: Commit Output files
+        run: |
+                 git config --local user.email "action@github.com"
+                 git config --local user.name "GitHub Action"
+                 git add domains-local.txt wildcard-local.txt 
+                 git commit -m "Update Output files"
+                 git push "https://ValluvarSploit:${{ secrets.GITHUB_TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
