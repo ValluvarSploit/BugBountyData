@@ -58,7 +58,7 @@ jobs:
       - name: Rename file
         run: |
                  cp domains.txt domains-local.txt && cp wildcards.txt wildcard-local.txt
-                 rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt httpx-output.txt
+                 rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt
           
       - name: Send Files to Slack Channel
         run: |
