@@ -68,8 +68,10 @@ jobs:
                  
       - name: Remove Tempoaray Files
         run: |           
-                 rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt httpx-output.txt nuclie-output.txt
+                 rm LICENSE.md README.md httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt
                  rm -rf nuclei-templates/
+                 if [[ -f httpx-output.txt ]]; then rm httpx-output.txt; fi
+                 if [[ -f nuclie-output.txt ]]; then rm nuclie-output.txt; fi
                  
       - name: Commit Output files
         run: |
