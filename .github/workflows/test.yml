@@ -1,0 +1,19 @@
+name: Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  slack-test:
+    
+    runs-on: ubuntu-latest
+    env:
+                 SLACK_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_TOKEN }}
+                 SLACK_CHANNEL_NAME: ${{ secrets.SLACK_CHANNEL_NAME }}
+              
+    steps:
+      - uses: actions/checkout@2
+      
+      - name: test slack file upload
+        run: |
+                 curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData-Nucli Scan Output File" -F filename="nuclei-output.txt" -F file=@nuclie-output.bak
