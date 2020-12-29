@@ -64,7 +64,7 @@ jobs:
         run: |
                  today=$(date +"%d_%m_%Y")
                  if [[ -f httpx-output.txt ]]; then sort httpx-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData httprobe subdomains file-$today" -F filename="httpx-output_$today.txt" -F file=@httpx-output.txt; fi
-                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData-nucli scan file-$today" -F filename="nuclei-output_$today.txt" -F file=@nuclie-output.txt; fi
+                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData-nuclie scan file-$today" -F filename="nuclei-output_$today.txt" -F file=@nuclie-output.txt; fi
                  
       - name: Remove Tempoaray Files
         run: |           
