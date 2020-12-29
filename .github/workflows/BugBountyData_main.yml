@@ -68,7 +68,7 @@ jobs:
                  
       - name: Remove Tempoaray Files
         run: |           
-                 rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt
+                 rm LICENSE.md README.md httpx httpx_1.0.3_linux_amd64.tar.gz httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt httpx-output.txt nuclie-output.txt
                  rm -rf nuclei-templates/
                  
       - name: Commit Output files
@@ -76,5 +76,5 @@ jobs:
                  git config --local user.email "action@github.com"
                  git config --local user.name "GitHub Action"
                  git add domains-local.txt wildcard-local.txt 
-                 git commit -m "Update Output files"
+                 git commit -m "domains and wildcard data updated"
                  git push "https://ValluvarSploit:${{ secrets.GITHUB_TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
