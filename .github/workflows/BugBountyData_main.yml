@@ -76,4 +76,4 @@ jobs:
                  git config --local user.name "GitHub Action"
                  git add domains-local.txt wildcard-local.txt 
                  git commit -m "domains and wildcard data updated"
-                 git push "https://ValluvarSploit:${{ secrets.GITHUB_TOKEN }}@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
+                 git push "https://ValluvarSploit:"$GITHUB_TOKEN"@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
