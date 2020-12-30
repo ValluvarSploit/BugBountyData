@@ -1,10 +1,10 @@
 name: BugBountyData
 
-on: 
-  workflow_dispatch:
-#on:
-#  schedule:
-#  - cron: "* * * * *"
+#on: 
+#  workflow_dispatch:
+on:
+  schedule:
+  - cron: "0 * * * *"
 
 jobs:
   bug-bounty-data:
@@ -67,7 +67,7 @@ jobs:
                  
       - name: Remove Tempoaray Files
         run: |           
-                 rm LICENSE.md README.md httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt
+                 rm LICENSE.md README.md httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt httprobe
                  rm -rf nuclei-templates/
                  if [[ -f httpx-output.txt ]]; then rm httpx-output.txt; fi
                  if [[ -f nuclie-output.txt ]]; then rm nuclie-output.txt; fi
