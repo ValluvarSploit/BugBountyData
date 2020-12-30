@@ -1,8 +1,9 @@
 name: BugBountyData
-  
+
+#on: 
 on:
   schedule:
-  - cron: "0 * * * *"
+  - cron: "* * * * *"
 
 jobs:
   bug-bounty-data:
