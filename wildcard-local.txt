@@ -45,7 +45,6 @@
 *-client.fitbit.com
 *.gojekapi.com
 *.healthifyme.com
-*.hs-sites.com
 *.hubapi.com
 *.hubspot.com
 *.hubspot.net
