@@ -1,10 +1,10 @@
 name: BugBountyData
 
-#on: 
-#  workflow_dispatch:
-on:
-  schedule:
-  - cron: "0 * * * *"
+on: 
+  workflow_dispatch:
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
 
 jobs:
   bug-bounty-data:
