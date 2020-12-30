@@ -11,7 +11,6 @@
 *.boozt.com
 *.booztlet.com
 *.bugpoc.com
-*.hs-sites.com
 *.bugpoc.ninja
 *.rtcdn.caffeine.tv
 *.canva-apps.cn
@@ -46,6 +45,7 @@
 *-client.fitbit.com
 *.gojekapi.com
 *.healthifyme.com
+*.hs-sites.com
 *.hubapi.com
 *.hubspot.com
 *.hubspot.net
@@ -154,6 +154,7 @@ api*.soundcloud.com
 *signalservice.comcast.net
 xhomeapi-*.cloud.comcast.net
 xhomeapi-*.codebig2.net
+*.revenuecat.com
 *.vpn.hackerone.net
 *.hackerone-ext-content.com
 *.hackerone-user-content.com
