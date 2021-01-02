@@ -1,11 +1,11 @@
-name: BugBountyData
+name: Watch BB Public Program
 
 on:
   schedule:
   - cron: "0 * * * *"
 
 jobs:
-  bug-bounty-data:
+  bbp-watcher:
     runs-on: ubuntu-latest
     env:
                  SLACK_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_USER_TOKEN }}
@@ -30,23 +30,23 @@ jobs:
                  wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
                  wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
           
-      # automation.py produces two files- domains-output.txt, wildcard-output.txt
+      # watcher.py produces two files- domains-new.txt, wildcards-new.txt
       - name: Check for New domains
         run: |
-                 python3 automation.py
+                 python3 watcher.py
                  
       - name: Clean Wildcard domains
         run: |
-                 cat wildcard-output.txt | sed 's/\*\.//g' > domains-clean.txt
+                 cat wildcards-new.txt | sed 's/\*\.//g' > wildcards-clean.txt
                  
       - name: Findomain
         run: |
-                 ./findomain -f domains-clean.txt -q > findomain-output.txt
+                 ./findomain -f wildcards-clean.txt -q > findomain-output.txt
                  
       - name: HTTP/HTTPS Resolver-httprobe
         run: |
-                 cat findomain-output.txt domains-output.txt > httpx-input.txt
-                 cat httpx-input.txt | ./httprobe | tee -a httpx-output.txt
+                 cat findomain-output.txt domains-new.txt > httpx-input.txt
+                 cat httpx-input.txt | ./httprobe | tee httpx-output.txt
           
       - name: Nuclei
         run: |
@@ -54,26 +54,12 @@ jobs:
                     
       - name: Rename file
         run: |
-                 cp domains.txt domains-local.txt && cp wildcards.txt wildcard-local.txt
-                 rm domains-output.txt wildcard-output.txt domains-clean.txt findomain-output.txt
+                 cp domains.txt domains-local.txt && cp wildcards.txt wildcards-local.txt
+                 cat domains-new.txt wildcards-new.txt | tee actioned.txt
           
       - name: Send Files to Slack Channel
         run: |
                  today=$(date +"%d_%m_%Y")
-                 if [[ -f httpx-output.txt ]]; then sort httpx-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData httprobe subdomains file-$today" -F filename="httpx-output_$today.txt" -F file=@httpx-output.txt; fi
-                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="BugBountyData-nuclie scan file-$today" -F filename="nuclei-output_$today.txt" -F file=@nuclie-output.txt; fi
-                 
-      - name: Remove Tempoaray Files
-        run: |           
-                 rm LICENSE.md README.md httpx-input.txt findomain nuclei nuclei_2.2.0_linux_amd64.tar.gz domains.txt wildcards.txt httprobe
-                 rm -rf nuclei-templates/
-                 if [[ -f httpx-output.txt ]]; then rm httpx-output.txt; fi
-                 if [[ -f nuclie-output.txt ]]; then rm nuclie-output.txt; fi
-                 
-      - name: Commit Output files
-        run: |
-                 git config --local user.email "action@github.com"
-                 git config --local user.name "GitHub Action"
-                 git add domains-local.txt wildcard-local.txt 
-                 git commit -m "domains and wildcard data updated"
-                 git push "https://ValluvarSploit:"$GITHUB_TOKEN"@github.com/ValluvarSploit/BugBountyData.git" HEAD:main --follow-tags
+                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Nuclei-Results-$today" -F filename="watch-bbp-public-nuclei-$today.txt" -F file=@nuclie-output.txt; fi
+                 if [[ -f actioned.txt ]]; then curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Actioned-$today" -F filename="watch-bbp-public-actioned-$today.txt" -F file=@actioned.txt; fi
+
