@@ -65,3 +65,10 @@ jobs:
                  if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Nuclei-Results-$today" -F filename="watch-bbp-public-nuclei-$today.txt" -F file=@nuclie-output.txt; fi
                  if [[ -f actioned.txt ]]; then curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Actioned-$today" -F filename="watch-bbp-public-actioned-$today.txt" -F file=@actioned.txt; fi
 
+      - name: Commit Output files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add domains-local.txt wildcard-local.txt
+          git commit -m "Update Local Files"
+          git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Watch-BBP-Public.git" HEAD:main --follow-tags
