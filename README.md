@@ -1,2 +1,1 @@
-# BugBountyData
-#
+# Watch-BBP-Public
