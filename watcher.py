@@ -2,7 +2,7 @@
 import os
 
 os.system('touch domains-new.txt')
-os.system('touch wildcard-new.txt')
+os.system('touch wildcards-new.txt')
 
 domains_local_list = []
 domains_remote_list = []
@@ -12,7 +12,7 @@ wildcards_remote_list = []
 with open('domains.txt', 'r') as domains_remote_file:
     with open('wildcards.txt', 'r') as wildcards_remote_file:
         with open('domains-local.txt', 'r') as domains_local_file:
-            with open('wildcard-local.txt', 'r') as wildcard_local_file:
+            with open('wildcards-local.txt', 'r') as wildcard_local_file:
                 for drline in domains_remote_file:
                     domains_remote_list.append(drline.strip())
                 for wrline in wildcards_remote_file:
@@ -30,6 +30,6 @@ for element in domains_remote_list:
 
 for element in wildcards_remote_list:
     if element not in wildcards_local_list:
-        with open('wildcard-new.txt', 'a') as wf:
+        with open('wildcards-new.txt', 'a') as wf:
             wf.write(element)
             wf.write('\n')
