@@ -9,6 +9,7 @@
 *.bitdefender.net
 *.bitdiscovery.com
 *.overstock.com
+*.statuspage.io
 *.boozt.com
 *.booztlet.com
 *.bugpoc.com
@@ -69,7 +70,6 @@
 *.prod.dradis.netflix.com
 *.prod.ftl.netflix.com
 api*.netflix.com
-*.opsgeni.us
 *.pinterest.com
 *.aips-internal.com
 *.aips-services.com
