@@ -9,6 +9,8 @@
 *.bitdefender.net
 *.bitdiscovery.com
 *.overstock.com
+*.opsgeni.us
+*.supplieroasis.com
 *.statuspage.io
 *.boozt.com
 *.booztlet.com
