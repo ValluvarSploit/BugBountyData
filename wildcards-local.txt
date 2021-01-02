@@ -8,6 +8,7 @@
 *.bitdefender.com
 *.bitdefender.net
 *.bitdiscovery.com
+*.overstock.com
 *.boozt.com
 *.booztlet.com
 *.bugpoc.com
