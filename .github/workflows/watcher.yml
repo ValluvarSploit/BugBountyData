@@ -69,6 +69,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add domains-local.txt wildcard-local.txt
+          git add domains-local.txt wildcards-local.txt
           git commit -m "Update Local Files"
           git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Watch-BBP-Public.git" HEAD:main --follow-tags
