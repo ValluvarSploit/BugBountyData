@@ -11,6 +11,7 @@
 *.boozt.com
 *.booztlet.com
 *.bugpoc.com
+*.statuspage.io
 *.bugpoc.ninja
 *.rtcdn.caffeine.tv
 *.canva-apps.cn
