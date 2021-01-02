@@ -46,8 +46,6 @@ binance.sg
 binance.us
 assetinventory.bugcrowd.com
 knox.beta.blendlabs.com
-send.blend.com
-a2m.bluejeans.com
 api.bluejeans.com
 bluejeans.com
 huddle.bluejeans.com
