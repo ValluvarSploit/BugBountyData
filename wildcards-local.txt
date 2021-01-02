@@ -207,7 +207,6 @@ munin-*.wordpress.org
 *.phonegap.com
 *.scene7.com
 *.tt.omtrdc.net
-*.tubemogul.com
 *.typekit.com
 *.blockchain.com
 *.dev.blockchain.info
