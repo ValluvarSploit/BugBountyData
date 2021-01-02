@@ -102,7 +102,6 @@ api*.netflix.com
 api*.soundcloud.com
 *.square.com
 *.squareup.com
-*.statuspage.io
 *.citymeal.com
 *.lieferando.at
 *.lieferando.de
