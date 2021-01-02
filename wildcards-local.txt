@@ -8,14 +8,9 @@
 *.bitdefender.com
 *.bitdefender.net
 *.bitdiscovery.com
-*.overstock.com
-*.opsgeni.us
-*.supplieroasis.com
-*.statuspage.io
 *.boozt.com
 *.booztlet.com
 *.bugpoc.com
-*.statuspage.io
 *.bugpoc.ninja
 *.rtcdn.caffeine.tv
 *.canva-apps.cn
@@ -72,6 +67,9 @@
 *.prod.dradis.netflix.com
 *.prod.ftl.netflix.com
 api*.netflix.com
+*.opsgeni.us
+*.overstock.com
+*.supplieroasis.com
 *.pinterest.com
 *.aips-internal.com
 *.aips-services.com
@@ -106,6 +104,7 @@ api*.netflix.com
 api*.soundcloud.com
 *.square.com
 *.squareup.com
+*.statuspage.io
 *.citymeal.com
 *.lieferando.at
 *.lieferando.de
@@ -207,6 +206,7 @@ munin-*.wordpress.org
 *.phonegap.com
 *.scene7.com
 *.tt.omtrdc.net
+*.tubemogul.com
 *.typekit.com
 *.blockchain.com
 *.dev.blockchain.info
