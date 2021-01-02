@@ -68,8 +68,6 @@
 *.prod.ftl.netflix.com
 api*.netflix.com
 *.opsgeni.us
-*.overstock.com
-*.supplieroasis.com
 *.pinterest.com
 *.aips-internal.com
 *.aips-services.com
