@@ -1,8 +1,11 @@
 name: Watch BB Public Program
 
 on:
-  schedule:
-  - cron: "0 * * * *"
+  workflow_dispatch: 
+
+#on:
+#  schedule:
+#  - cron: "0 * * * *"
 
 jobs:
   bbp-watcher:
