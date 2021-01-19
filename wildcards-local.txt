@@ -1,6 +1,7 @@
 *.app.asana.com
 *.asana.biz
 *.asana.plus
+*.atlastunnel.com
 *.better.com
 *.binance.com
 *.binance.org
@@ -50,6 +51,7 @@
 *.hubapi.com
 *.hubspot.com
 *.hubspot.net
+*.piesync.com
 *.indeed.com
 *.lime.bike
 *.limeinternal.com
@@ -193,7 +195,6 @@ munin-*.wordpress.org
 *.qiwi.com
 *.qiwi.me
 *.rapida.ru
-*.rocketbank.ru
 *.acrobat.com
 *.adobe.com
 *.adobe.io
@@ -276,6 +277,7 @@ www.paypal-*.com
 *.gs-mosaic.gs.com
 *.gs-mosaic.qa.gs.com
 *.gs.com
+*.gs.de
 *.gsam.com
 *.gspublishing.com
 *.gsselect.com
@@ -339,6 +341,7 @@ www.paypal-*.com
 *.infrastructure.newrelic.com
 *.newrelic.com
 *.nr-data.net
+*.nr-ops.net
 *.nordvpn.com
 *.vanillacommunities.com
 *.vanilladevelopment.com
@@ -347,10 +350,12 @@ www.paypal-*.com
 *api.trustpilot.com
 *authenticate.trustpilot.com
 *b2b.trustpilot.com
+*blog.trustpilot.com
 *business.trustpilot.com
 *consumer-auth.trustpilot.com
 *emailsignature.trustpilot.com
 *invitations-api.trustpilot.com
+*jobs.trustpilot.com
 *locale.trustpilot.com
 *share.trustpilot.com
 *signup.business.trustpilot.com
@@ -472,8 +477,6 @@ vcc-*.8x8.com
 *.key.com
 *.keybank.com
 *.laurelroad.com
-*.runpanther.com
-*.runpanther.io
 *.koho.app
 *.koho.ca
 *.magisto.com
@@ -481,6 +484,7 @@ vcc-*.8x8.com
 *.mackeeper.com
 *.a.exodus.io
 *.exodus.io
+www.amazon.*
 *.evernote.com
 *.pubg.com
 *.pubgesports.com
@@ -528,6 +532,7 @@ vcc-*.8x8.com
 *.rebelliondefense.com
 *.tiktok.com
 *.tiktokv.com
+*.jimdo-platform.net
 *.jimdofree.com
 *.jimdosite.com
 *.itdashboard.gov
@@ -541,7 +546,6 @@ onboarding-*.cloud.com
 *.ad.nl
 *.bpost2.be
 *.dpgmedia.be
-*.dpgmedia.com
 *.demorgen.be
 *.volkskrant.nl
 *.das.eu
@@ -552,8 +556,11 @@ onboarding-*.cloud.com
 *.whois.eu
 *.gulp.ch
 *.gulp.de
+*.hwigroup.com
+*.hln.be
 *.parool.nl
 *.hoplr.*
+*.humo.be
 *.jooki.rocks
 *.muuselabs.com
 *.kinepolis.com
@@ -603,6 +610,9 @@ onboarding-*.cloud.com
 *.twago.com
 *.twago.de
 *.twago.es
+*.tweakblogs.net
+*.tweakers.net
+*.tweakimg.net
 *.canvas.be
 *.dewarmsteweek.be
 *.een.be
@@ -614,6 +624,8 @@ onboarding-*.cloud.com
 *.sporza.be
 *.stubru.be
 *.vrt.be
+*.vtm.be
+*.vtmgo.be
 *.forum.ibood.com
 *.intigriti.com
 *.intigriti.io
@@ -622,4 +634,5 @@ onboarding-*.cloud.com
 *.api.dailymotion.com
 *.dmcdn.net
 *.dailymotionadvertising.com
+*.muslimpro.com
 matrix.agent.*.tchap.gouv.fr
