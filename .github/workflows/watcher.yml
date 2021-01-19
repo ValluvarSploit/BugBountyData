@@ -14,59 +14,31 @@ jobs:
                  
     steps:
       - uses: actions/checkout@v2
-          
-      - name: Install Dependencies
-        run: |
-                wget --quiet https://github.com/Findomain/Findomain/releases/download/2.1.5/findomain-linux
-                mv findomain-linux findomain && chmod +x findomain
-                go get -u github.com/tomnomnom/httprobe
-                cp /home/runner/go/bin/httprobe .
-                git clone https://github.com/projectdiscovery/nuclei-templates.git
-                wget --quiet https://github.com/projectdiscovery/nuclei/releases/download/v2.2.0/nuclei_2.2.0_linux_amd64.tar.gz
-                tar -xzvf nuclei_2.2.0_linux_amd64.tar.gz
-                  
+                            
       - name: Get Latest Data
         run: |
-                 wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
-                 wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
+         wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
+         wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
           
       # watcher.py produces two files- domains-new.txt, wildcards-new.txt
       - name: Check for New domains
         run: |
-                 python3 watcher.py
-                 
-      - name: Clean Wildcard domains
-        run: |
-                 cat wildcards-new.txt | sed 's/\*\.//g' > wildcards-clean.txt
-                 
-      - name: Findomain
-        run: |
-                 ./findomain -f wildcards-clean.txt -q > findomain-output.txt
-                 
-      - name: HTTP/HTTPS Resolver-httprobe
-        run: |
-                 cat findomain-output.txt domains-new.txt > httpx-input.txt
-                 cat httpx-input.txt | ./httprobe | tee httpx-output.txt
-          
-      - name: Nuclei
-        run: |
-                 ./nuclei -l httpx-output.txt -c 100 -stats -silent -t nuclei-templates/ -exclude nuclei-templates/fuzzing/wp-plugin-scan.yaml -exclude nuclei-templates/fuzzing/basic-auth-bruteforce.yaml -exclude nuclei-templates/default-credentials/ -exclude nuclei-templates/technologies/ -o nuclie-output.txt
+         python3 watcher.py
                     
       - name: Rename file
         run: |
-                 cp domains.txt domains-local.txt && cp wildcards.txt wildcards-local.txt
-                 cat domains-new.txt wildcards-new.txt | tee actioned.txt
+         cp domains.txt domains-local.txt && cp wildcards.txt wildcards-local.txt
+         cat domains-new.txt wildcards-new.txt | tee domains.txt
           
       - name: Send Files to Slack Channel
         run: |
-                 today=$(date +"%d_%m_%Y")
-                 if [[ -f nuclie-output.txt ]]; then sort nuclie-output.txt; curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Nuclei-Results-$today" -F filename="watch-bbp-public-nuclei-$today.txt" -F file=@nuclie-output.txt; fi
-                 if [[ -f actioned.txt ]]; then curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Actioned-$today" -F filename="watch-bbp-public-actioned-$today.txt" -F file=@actioned.txt; fi
+         today=$(date +"%d_%m_%Y")
+         if [[ -f domains.txt ]]; then curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Domains-$today" -F filename="watch-bbp-public-domains-$today.txt" -F file=@domains.txt; fi
 
       - name: Commit Output files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add domains-local.txt wildcards-local.txt
-          git commit -m "Update Local Files"
-          git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Watch-BBP-Public.git" HEAD:main --follow-tags
+         git config --local user.email "action@github.com"
+         git config --local user.name "GitHub Action"
+         git add domains-local.txt wildcards-local.txt
+         git commit -m "Update Local Files"
+         git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Watch-BBP-Public.git" HEAD:main --follow-tags
