@@ -1,16 +1,15 @@
 name: Watch BB Public Program
-
 on:
   schedule:
   - cron: "0 * * * *"
-
 jobs:
   bbp-watcher:
     runs-on: ubuntu-latest
     env:
-                 SLACK_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_USER_TOKEN }}
-                 SLACK_CHANNEL_NAME: ${{ secrets.SLACK_CHANNEL_NAME }}
-                 GITHUB_TOKEN: ${{ secrets.TOKEN }}
+       SLACK_OAUTH_TOKEN: ${{ secrets.SLACK_OAUTH_USER_TOKEN }}
+       SLACK_CHANNEL_NAME: ${{ secrets.SLACK_CHANNEL_NAME }}
+       GITHUB_TOKEN: ${{ secrets.TOKEN }}
+       WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
                  
     steps:
       - uses: actions/checkout@v2
@@ -19,22 +18,17 @@ jobs:
         run: |
          wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/domains.txt
          wget --quiet https://raw.githubusercontent.com/arkadiyt/bounty-targets-data/master/data/wildcards.txt
-          
       # watcher.py produces two files- domains-new.txt, wildcards-new.txt
       - name: Check for New domains
-        run: |
-         python3 watcher.py
-                    
+        run: python3 watcher.py        
       - name: Rename file
         run: |
          cp domains.txt domains-local.txt && cp wildcards.txt wildcards-local.txt
          cat domains-new.txt wildcards-new.txt | tee domains.txt
-          
       - name: Send Files to Slack Channel
         run: |
          today=$(date +"%d_%m_%Y")
          if [[ -f domains.txt ]]; then curl https://slack.com/api/files.upload -F token="$SLACK_OAUTH_TOKEN" -F channels="$SLACK_CHANNEL_NAME" -F title="Watch-BBP-Public-Domains-$today" -F filename="watch-bbp-public-domains-$today.txt" -F file=@domains.txt; fi
-
       - name: Commit Output files
         run: |
          git config --local user.email "action@github.com"
@@ -42,3 +36,8 @@ jobs:
          git add domains-local.txt wildcards-local.txt
          git commit -m "Update Local Files"
          git push "https://ValluvarSploit:${{ secrets.TOKEN }}@github.com/ValluvarSploit/Watch-BBP-Public.git" HEAD:main --follow-tags
+      - name: Slack Notification
+        if: success()
+        run: |
+         curl -X POST -H 'Content-type: application/json' --data '{"text":"BB WATCHER COMPLETED.NEW DOMAINS/SUBDOMAINS MAY AVAILABLE."}' "$WEBHOOK"
+         
